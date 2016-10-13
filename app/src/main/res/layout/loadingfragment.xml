@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="16dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/you_are_in"
+            android:textSize="20sp"
+            android:id="@+id/textView" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/city_name_progressbar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:id="@+id/city_name" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView_searching"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_margin="16dp"
+        android:text="@string/searching_for_hospitals"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progressbar_searching"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_gravity="center_horizontal" />
+
+
+</LinearLayout>
