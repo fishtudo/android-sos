@@ -36,12 +36,18 @@ public class EstablishmentsAdapter extends BaseAdapter implements PermissionResu
 
     private String lastPhoneToCall = "";
 
+    private EstablishmentSelectListener establishmentSelectListener;
+
     private final int MY_PERMISSIONS_REQUEST_MAKE_CALL = 1234;
 
     public EstablishmentsAdapter(Activity activity, List<Establishment> establishments, Location userLocation){
         this.establishments = establishments;
         this.activity = activity;
         this.userLocation = userLocation;
+    }
+
+    public void setEstablishmentSelectListener(EstablishmentSelectListener establishmentSelectListener) {
+        this.establishmentSelectListener = establishmentSelectListener;
     }
 
     @Override
@@ -84,6 +90,15 @@ public class EstablishmentsAdapter extends BaseAdapter implements PermissionResu
             }
         });
 
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(establishmentSelectListener !=null){
+                    establishmentSelectListener.onEstablishmentSelected(establishments.get(position));
+                }
+            }
+        });
+
         return view;
     }
 
@@ -106,9 +121,6 @@ public class EstablishmentsAdapter extends BaseAdapter implements PermissionResu
         intent.setFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
         intent.setData(Uri.parse(uri));
         activity.startActivity(intent);
-
-
-//        activity.startActivity(intent);
     }
 
     private String calculateDistance(Establishment establishment){

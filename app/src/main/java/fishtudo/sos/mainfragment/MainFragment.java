@@ -39,6 +39,10 @@ public class MainFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.main_fragment, container, false);
         establishmentsAdapter = new EstablishmentsAdapter(getActivity(), getEstablishments(),getLocation());
 
+        if(getActivity() instanceof  EstablishmentSelectListener){
+            establishmentsAdapter.setEstablishmentSelectListener((EstablishmentSelectListener)getActivity());
+        }
+
         ((ListView)rootView.findViewById(R.id.listview)).setAdapter(establishmentsAdapter);
         return rootView;
     }

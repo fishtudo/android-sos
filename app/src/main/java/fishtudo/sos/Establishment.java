@@ -18,6 +18,30 @@ public class Establishment implements Parcelable{
     @JsonProperty(value = "descricaoCompleta")
     private String description;
 
+    @JsonProperty(value = "esferaAdministrativa")
+    private String administrativeSphere;
+
+//    @JsonProperty(value = "temAtendimentoUrgencia")
+//    private boolean emergency;
+//
+//    @JsonProperty(value = "temAtendimentoAmbulatorial")
+//    private boolean ambulatory;
+//
+//    @JsonProperty(value = "vinculoSus")
+//    private boolean sus;
+//
+//    @JsonProperty(value = "temCentroCirurgico")
+//    private boolean surgery;
+//
+//    @JsonProperty(value = "temObstetra")
+//    private boolean obstetrics;
+//
+//    @JsonProperty(value = "temNeoNatal")
+//    private boolean neonatal;
+//
+//    @JsonProperty(value = "temDialise")
+//    private boolean dialysis;
+
     @JsonProperty(value = "telefone")
     private String phoneNumber;
 
@@ -46,6 +70,36 @@ public class Establishment implements Parcelable{
     public String getPhoneNumber() {
         return phoneNumber;
     }
+
+    public String getAdministrativeSphere() {
+        return administrativeSphere;
+    }
+
+//    public boolean hasAmbulatory() {
+//        return ambulatory;
+//    }
+//
+//    public boolean hasEmergency() {
+//        return emergency;
+//    }
+//
+//    public boolean hasNeonatal() {
+//        return neonatal;
+//    }
+//
+//    public boolean hasObstetrics() {
+//        return obstetrics;
+//    }
+//
+//    public boolean hasSurgery() {
+//        return surgery;
+//    }
+//
+//    public boolean hasSus() {
+//        return sus;
+//    }
+//
+//    public boolean hasDialysis() { return dialysis; }
 
     public Establishment(){
 

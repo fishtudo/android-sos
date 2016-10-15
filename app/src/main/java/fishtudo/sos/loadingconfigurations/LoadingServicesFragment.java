@@ -56,8 +56,6 @@ public class LoadingServicesFragment extends Fragment implements LocationListene
             ActivityCompat.requestPermissions(getActivity(),
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     MY_PERMISSIONS_REQUEST_FINE_LOCATION);
-
-
             return rootView;
         }
         requestLocation();

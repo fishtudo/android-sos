@@ -7,8 +7,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="16dp"
-        >
+        android:gravity="center_vertical"
+        android:layout_margin="16dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -21,8 +21,7 @@
             style="?android:attr/progressBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
             android:id="@+id/city_name_progressbar" />
 
         <TextView
