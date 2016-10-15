@@ -2,6 +2,7 @@ package fishtudo.sos.mainfragment;
 
 import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,6 +24,8 @@ public class MainFragment extends Fragment {
     private final static String ARGUMENT_ESTABLISHMENTS = "argument establishment";
     private final static String ARGUMENT_LOCATION = "argument location";
 
+    private EstablishmentsAdapter establishmentsAdapter;
+
     /**
      * Use createInstance instead
      */
@@ -34,8 +37,9 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.main_fragment, container, false);
-        ((ListView)rootView.findViewById(R.id.listview)).setAdapter(new EstablishmentsAdapter(getActivity(),
-                getEstablishments(),getLocation()));
+        establishmentsAdapter = new EstablishmentsAdapter(getActivity(), getEstablishments(),getLocation());
+
+        ((ListView)rootView.findViewById(R.id.listview)).setAdapter(establishmentsAdapter);
         return rootView;
     }
 
@@ -53,6 +57,14 @@ public class MainFragment extends Fragment {
         }
 
         return (Location) getArguments().get(ARGUMENT_LOCATION);
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(establishmentsAdapter != null){
+            establishmentsAdapter.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 
     public static MainFragment createInstance(Location location, ArrayList<Establishment> establishments){
