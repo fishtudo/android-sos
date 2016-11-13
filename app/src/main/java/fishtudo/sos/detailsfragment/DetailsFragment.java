@@ -25,15 +25,16 @@ public class DetailsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.detailsfragment, container, false);
         ((TextView)rootView.findViewById(R.id.name)).setText(getEstablishment().getName());
         ((TextView)rootView.findViewById(R.id.description)).setText(getEstablishment().getDescription());
-        ((TextView)rootView.findViewById(R.id.administrative_esphere)).setText(getEstablishment().getAdministrativeSphere());
+        ((TextView)rootView.findViewById(R.id.administrative_esphere)).setText(getActivity().getString(
+                R.string.administrative_esphere_description) +" "+ getEstablishment().getAdministrativeSphere());
 
-//        ((CheckBox)rootView.findViewById(R.id.sus)).setChecked(getEstablishment().hasSus());
-//        ((CheckBox)rootView.findViewById(R.id.emergency)).setChecked(getEstablishment().hasEmergency());
-//        ((CheckBox)rootView.findViewById(R.id.ambulatory)).setChecked(getEstablishment().hasAmbulatory());
-//        ((CheckBox)rootView.findViewById(R.id.surgery)).setChecked(getEstablishment().hasSurgery());
-//        ((CheckBox)rootView.findViewById(R.id.obstetrics)).setChecked(getEstablishment().hasObstetrics());
-//        ((CheckBox)rootView.findViewById(R.id.neonatal)).setChecked(getEstablishment().hasNeonatal());
-//        ((CheckBox)rootView.findViewById(R.id.dialysis)).setChecked(getEstablishment().hasDialysis());
+        ((CheckBox)rootView.findViewById(R.id.sus)).setChecked(getEstablishment().hasSus());
+        ((CheckBox)rootView.findViewById(R.id.emergency)).setChecked(getEstablishment().hasEmergency());
+        ((CheckBox)rootView.findViewById(R.id.ambulatory)).setChecked(getEstablishment().hasAmbulatory());
+        ((CheckBox)rootView.findViewById(R.id.surgery)).setChecked(getEstablishment().hasSurgery());
+        ((CheckBox)rootView.findViewById(R.id.obstetrics)).setChecked(getEstablishment().hasObstetrics());
+        ((CheckBox)rootView.findViewById(R.id.neonatal)).setChecked(getEstablishment().hasNeonatal());
+        ((CheckBox)rootView.findViewById(R.id.dialysis)).setChecked(getEstablishment().hasDialysis());
 
         return rootView;
     }

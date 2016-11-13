@@ -20,12 +20,34 @@ public class MainActivity extends AppCompatActivity implements LoadingServiceCal
 
     private Fragment currentFragment;
 
+    private boolean active = false;
+
+    private ArrayList<Establishment> establishments;
+
+    private Location location;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         new ConfigurationLoader().loadServerConfigurations();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         addFragment(new LoadingServicesFragment());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        active = true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        active = false;
+        if(location != null && establishments !=null){
+            addFragmentWithAnimations(
+                    MainFragment.createInstance(location, establishments), R.anim.anim1_enter, R.anim.anim1_exit, false);
+        }
     }
 
     private void addFragment(Fragment fragment){
@@ -53,7 +75,12 @@ public class MainActivity extends AppCompatActivity implements LoadingServiceCal
 
     @Override
     public void onConfigurationsLoaded(Location location, ArrayList<Establishment> establishments) {
-        addFragmentWithAnimations(MainFragment.createInstance(location, establishments), R.anim.anim1_enter, R.anim.anim1_exit, false);
+        this.location = location;
+        this.establishments = establishments;
+        if(active){
+            addFragmentWithAnimations(MainFragment.createInstance(location, establishments), R.anim.anim1_enter,
+                    R.anim.anim1_exit, false);
+        }
     }
 
     @Override

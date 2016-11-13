@@ -14,6 +14,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +48,8 @@ public class LoadingServicesFragment extends Fragment implements LocationListene
 
     private LoadingServiceCallback loadingServiceCallback;
 
+    private Location location = null;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,8 +63,38 @@ public class LoadingServicesFragment extends Fragment implements LocationListene
             return rootView;
         }
         requestLocation();
+        configureLoadingLocationAnimation();
 //        mock();
         return rootView;
+    }
+
+    private void configureLoadingLocationAnimation() {
+        Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.searching_anim);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                if(location != null){
+                    rootView.findViewById(R.id.searching_location).setAnimation(null);
+                    rootView.findViewById(R.id.searching_location).setVisibility(View.GONE);
+                    rootView.findViewById(R.id.you_are_in).setVisibility(View.VISIBLE);
+                    ((TextView)rootView.findViewById(R.id.city_name)).setText(LocationUtils.getCityName(getActivity(), location));
+                    rootView.findViewById(R.id.textView_searching).setVisibility(View.VISIBLE);
+                    rootView.findViewById(R.id.textView_searching).startAnimation(
+                            AnimationUtils.loadAnimation(getActivity(), R.anim.searching_anim));
+                }
+            }
+        });
+        rootView.findViewById(R.id.searching_location).startAnimation(animation);
     }
 
     private void mock(){
@@ -68,7 +102,6 @@ public class LoadingServicesFragment extends Fragment implements LocationListene
             @Override
             public void run() {
                 ArrayList<Establishment> arrayList = new ArrayList();
-
                 Location mockLocation = getRandomMockLocationNearby();
                 arrayList.add(new Establishment("Hospital 1", "0619876-5432", mockLocation.getLatitude(), mockLocation.getLongitude()));
                 mockLocation = getRandomMockLocationNearby();
@@ -103,7 +136,6 @@ public class LoadingServicesFragment extends Fragment implements LocationListene
         }
     }
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -120,10 +152,8 @@ public class LoadingServicesFragment extends Fragment implements LocationListene
     public void onLocationChanged(Location location) {
         if(getActivity() == null)
             return;
-        rootView.findViewById(R.id.city_name_progressbar).setVisibility(View.GONE);
-        rootView.findViewById(R.id.progressbar_searching).setVisibility(View.VISIBLE);
-        rootView.findViewById(R.id.textView_searching).setVisibility(View.VISIBLE);
-        ((TextView)rootView.findViewById(R.id.city_name)).setText(LocationUtils.getCityName(getActivity(), location));
+
+        this.location = location;
         loadService(location);
     }
 

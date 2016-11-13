@@ -12,12 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
 
 import api.location.LocationUtils;
+import api.util.AndroidUtils;
 import api.util.StringUtil;
 import fishtudo.sos.Establishment;
 import fishtudo.sos.R;
@@ -69,7 +71,16 @@ public class EstablishmentsAdapter extends BaseAdapter implements PermissionResu
     public View getView(final int position, View convertView, ViewGroup parent) {
         View view = LayoutInflater.from(activity).inflate(R.layout.establishment_cell, parent, false);
         ((TextView)view.findViewById(R.id.name)).setText(establishments.get(position).getName());
-        ((TextView)view.findViewById(R.id.phone)).setText(establishments.get(position).getPhoneNumber());
+        if(StringUtil.isEmpty(establishments.get(position).getPhoneNumber())){
+            view.findViewById(R.id.call_icon).setVisibility(View.INVISIBLE);
+            ((TextView)view.findViewById(R.id.phone)).setText("");
+        }else{
+            ((TextView)view.findViewById(R.id.phone)).setText(
+                    android.telephony.PhoneNumberUtils.formatNumber(establishments.get(position).getPhoneNumber()));
+            paintIcon((ImageView) view.findViewById(R.id.call_icon), activity.getResources().getColor(R.color.phone_icon_color));
+        }
+        paintIcon((ImageView) view.findViewById(R.id.drive_icon), activity.getResources().getColor(R.color.navigate_icon_color));
+
         ((TextView)view.findViewById(R.id.distance)).setText(calculateDistance(establishments.get(position)));
         view.findViewById(R.id.call_icon).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +111,10 @@ public class EstablishmentsAdapter extends BaseAdapter implements PermissionResu
         });
 
         return view;
+    }
+
+    private void paintIcon(ImageView imageView, int color){
+        imageView.setImageDrawable(AndroidUtils.paintDrawable(imageView.getDrawable(), color));
     }
 
     private void makeCall(String call){

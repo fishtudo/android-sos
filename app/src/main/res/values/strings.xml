@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">SOS</string>
-    <string name="searching_for_hospitals">Buscando hospitais próximos a você...</string>
+    <string name="searching_location">Buscando sua localização…</string>
+    <string name="searching_for_hospitals">Buscando hospitais próximos a você…</string>
     <string name="you_are_in">Você está em</string>
     <string name="sus">Vínculo com o SUS</string>
     <string name="emergency">Pronto socorro</string>
@@ -9,4 +10,5 @@
     <string name="obstetrics">Atendimento obstétrico</string>
     <string name="neonatal">Atendimento neonatal</string>
     <string name="dialysis">Atendimento dialítico</string>
+    <string name="administrative_esphere_description">Tipo de instituição: </string>
 </resources>

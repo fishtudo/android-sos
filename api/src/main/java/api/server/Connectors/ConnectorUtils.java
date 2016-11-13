@@ -13,10 +13,6 @@ public class ConnectorUtils {
 
     public static char equal = '/';
 
-    public static String buildParameters(Map<String, String> parameters) throws UnsupportedEncodingException{
-        return buildParameters(concat, equal, parameters);
-    }
-
     public static String buildParameters(char concat, char equal, Map<String, String> parameters)
             throws UnsupportedEncodingException {
         if (parameters == null) {

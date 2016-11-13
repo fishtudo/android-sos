@@ -22,6 +22,7 @@ import fishtudo.sos.R;
 public class MainFragment extends Fragment {
 
     private final static String ARGUMENT_ESTABLISHMENTS = "argument establishment";
+
     private final static String ARGUMENT_LOCATION = "argument location";
 
     private EstablishmentsAdapter establishmentsAdapter;
