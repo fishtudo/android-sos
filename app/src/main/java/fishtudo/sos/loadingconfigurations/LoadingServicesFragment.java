@@ -64,7 +64,9 @@ public class LoadingServicesFragment extends Fragment implements LocationListene
         }
         requestLocation();
         configureLoadingLocationAnimation();
+
 //        mock();
+//        loadService(getMockLocation());
         return rootView;
     }
 
