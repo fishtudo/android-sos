@@ -11,7 +11,6 @@ import java.util.Map;
 import api.util.StringUtil;
 
 /**
- * Untested
  *
  * @author charles
  */
