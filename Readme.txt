@@ -5,15 +5,7 @@ Este aplicativo foi desenvolvido como parte de um TCC pelo curso de pós graduaçã
 O aplicativo pode ser baixado na Google Play pela url abaixo:
 https://play.google.com/store/apps/details?id=fishtudo.sos
 
-
-
-
-
-
-
-
-
-
+____________________________________________________________________________________________________
 SOS for Android
 
 This application have been developed as part of Especialização em Dispositivos Móveis post-graduation diploma project for INSTITUTO DE EDUCAÇÃO SUPERIOR DE BRASÍLIA – IESB .
